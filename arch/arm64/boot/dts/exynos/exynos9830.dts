@@ -3284,7 +3284,6 @@
 		fmp0 = "/fmp";
 		mshc2 = "/dwmmc2@132E0000";
 		scaler0 = "/scaler@18B10000";
-		mfc0 = "/mfc@188D0000";
 	};
 
 	usi@10421004 {
@@ -10580,7 +10579,7 @@
 		phandle = <0x31c>;
 	};
 
-	mfc@188D0000 {
+	mfc {
 		compatible = "samsung,exynos-mfc";
 		iommus = <0xf2 0xf3>;
 		ip_ver = <0x14000100>;
@@ -10606,7 +10605,6 @@
 		av1_film_grain = <0x00 0x00>;
 		P010_decoding = <0x01>;
 		dithering_enable = <0x00>;
-		enc_ts_delta = <0x01 0x211208>; /* DARIO */
 		support_10bit = <0x01>;
 		support_422 = <0x01>;
 		support_rgb = <0x01>;
@@ -10673,7 +10671,7 @@
 		ranges;
 		phandle = <0x169>;
 
-		mfc_core0: MFC-0 {
+		MFC-0 {
 			compatible = "samsung,exynos-mfc-core";
 			id = <0x00>;
 			reg = <0x00 0x186d0000 0x10000>;
@@ -10688,7 +10686,7 @@
 			trans_info_offset = <0x1004>;
 			llc = <0x01>;
 			need_llc_flush = <0x00>;
-			mfc_votf_base = <0x00>; /* DARIO Probably this is wrong cause we have it */
+			mfc_votf_base = <0x00>;
 			gdc_votf_base = <0x00>;
 			votf_start_offset = <0x00>;
 			votf_end_offset = <0x00>;
@@ -10705,7 +10703,7 @@
 			#address-cells = <0x02>;
 			#size-cells = <0x01>;
 			ranges;
-			/* phandle = <0x170>; DARIO is this needed ? */
+			phandle = <0x91f>;
 
 			iommu {
 				reg = <0x00 0x18670000 0x9000 0x00 0x186a0000 0x9000>;
@@ -10714,11 +10712,6 @@
 			hwfc {
 				reg = <0x00 0x18a48000 0x100>;
 			};
-
-			/* DARIO this maybe is wrong 
-			votf {
-				reg = <0x00 0x00 0x00>;
-			};*/
 
 			mfc_default_qos_table {
 
@@ -15210,7 +15203,7 @@
 		#address-cells = <0x02>;
 		#size-cells = <0x01>;
 		ranges;
-		domain-clients = <0x169 &mfc_core0 0x16a>;
+		domain-clients = <0x169 0x91f 0x16a>;
 	};
 
 	tsmux@186E0000 {
@@ -16992,8 +16985,6 @@
 		sysmmu_dnc3 = "/sysmmu@197A0000";
 		sysmmu_dnc4 = "/sysmmu@197D0000";
 		sysmmu_vra = "/sysmmu@18080000";
-		sysmmu_mfc0 = "/sysmmu@18670000";
-		sysmmu_mfc1 = "/sysmmu@186A0000";
 		usi_0 = "/usi@10421004";
 		usi_0_i2c = "/usi@10421008";
 		usi_1 = "/usi@1042100c";
@@ -17310,7 +17301,8 @@
 		decon_s = "/decon_s@0x19060000";
 		decon_t = "/decon_t@0x19070000";
 		mafpc_0 = "/mafpc_0";
-		mfc_0 = "/mfc@188D0000";
+		mfc = "/mfc";
+		mfc_core0 = "/mfc/MFC-0";
 		pcie_0 = "/pcie@133B0000";
 		pcie_1 = "/pcie@13320000";
 		pcie_2 = "/pcie@13D20000";
